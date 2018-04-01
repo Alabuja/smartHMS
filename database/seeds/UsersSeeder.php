@@ -15,6 +15,8 @@ class UsersSeeder extends Seeder
             'username' => 'admin',
             'email' => 'daniel@gmail.com',
             'password' => bcrypt('password'),
+            'avatar' => 'default_avatar.jpg',
+            'avatar_url' => 'http://res.cloudinary.com/dvvvmbbei/image/upload/c_fit,h_200,w_200/gvatsjk6v0sr2jezzksw.png',
         ]);
 
         DB::table('departments')->insert(

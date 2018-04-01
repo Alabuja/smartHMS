@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+ 
 
 Route::group(['middleware' => ['guest']], function(){
 
@@ -101,6 +101,23 @@ Route::group(['prefix' => 'patient', 'middleware' => ['patient']], function () {
 
 });
 
-Route::group(['middleware' => ['admin']], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
 
+    Route::get('home', 'AdminController@index');
+    Route::get('profile', 'AdminController@profile');
+
+    Route::get('officials', 'AdminController@getOfficial'); 
+    Route::post('newofficials', 'AdminController@addOfficial');  // Should be a modal
+
+    Route::get('patients', 'AdminController@getPatient'); 
+    Route::post('newpatients', 'AdminController@addPatient');  // Should be a modal
+
+    Route::get('department', 'AdminController@getDepartment');
+    Route::post('newdepartment', 'AdminController@addDepartment'); //Should be a modal 
+
+    Route::get('blood_donor', 'AdminController@getBloodDonor');
+    Route::get('blood_bank', 'AdminController@getBloodBank');
+    Route::get('medicine', 'AdminController@getMedicine');
+
+    Route::post('logout', 'Admin\Auth\AdminLoginController@getLogout');
 });

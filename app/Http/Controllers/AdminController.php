@@ -8,13 +8,30 @@ use App\Http\Requests\UsersRequest;
 class AdminController extends Controller
 {
 
+    public function index()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function profile()
+    {
+        return view('admin.profile');
+    }
+
 
 	/**
 	*	Doctors
 	*/
-	public function getdoctor()
+	public function getOfficial()
     {
-    	# code...
+    	return view('admin.newusers');
+    }
+
+    public function addOfficial()
+    {
+        # code...
+
+        //Should be a modal
     }
 
     /**
@@ -26,41 +43,50 @@ class AdminController extends Controller
     }
 
     /**
-	*	Laboratorist
-	*/
-	public function getLaboratorist()
-    {
-    	# code...
-    }
-
-    /**
-	*	Pharmacist
-	*/
-	public function getPharmacist()
-    {
-    	# code...
-    }
-
-
-    /**
-	*	Nurse
-	*/
-	public function getNurse()
-    {
-    	# code...
-    }
-
-    /**
 	*	Patient
 	*/
 	public function getPatient()
     {
-    	# code...
+    	return view('admin.newpatients');
     }
 
     public function addPatient()
     {
     	# code...
+    }
+
+    /**
+    *   Monitor Hospital
+    */
+
+    public function getBloodDonor()
+    {
+        return view('admin.blood_donor');
+    }
+
+    public function getBloodBank()
+    {
+        return view('admin.blood_bank');
+    }
+
+    public function getMedicine()
+    {
+        return view('admin.medicine');
+    }
+
+    /**
+    *   Department
+    */
+
+    public function getDepartment()
+    {
+        return view('admin.department');
+    }
+
+    public function addDepartment()
+    {
+        //return view('admin.newdepartment');
+        // Should a modal
     }
 
     public function store(UsersRequest $request)
