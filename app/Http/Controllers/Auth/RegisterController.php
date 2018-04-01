@@ -50,7 +50,19 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'phone_number' => 'required|numeric|unique:users',
+            'password' => 'required|string|min:6',
+            'address' => 'required',
+            'birth_date' => '',
+            'role' =>'required',
+            'blood_group' => '',
+            'sex' => '',
+            'department_id' => '',
+            'profile' => '',
+            'linkedin_url' => '',
+            'facebook_url' => '',
+            'twitter_url' => '',
+            'avatar' => 'required',
         ]);
     }
 
@@ -62,10 +74,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone_number' => $data['phone_number'], 
             'password' => bcrypt($data['password']),
+            'address' => $data['address'],
+            'birth_date' => $data['birth_date'],
+            'role' => $data['role'],
+            'blood_group' => $data['blood_group'],
+            'sex' => $data['sex'],
+            'department_id' => $data['department_id'],
+            'profile' => $data['profile'],
+            'linkedin_url' => $data['linkedin_url'],
+            'facebook_url' => $data['facebook_url'],
+            'twitter_url' => $data['twitter_url'],
+            'avatar' => $data['avatar'],
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('admin.newusers');
     }
 }

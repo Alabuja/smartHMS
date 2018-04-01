@@ -15,7 +15,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'phone_number', 'password', 'address', 'role',
+        'department_id', 'profile', 'linkedin_url',
+        'facebook_url', 'twitter_url', 'avatar', 'avatar_url', 
     ];
 
     /**
@@ -26,4 +28,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isRole(){
+      return $this->role; // mysql table column
+    }
+
+    // public function hasAccess(array $permissions)
+    // {
+    //    foreach($this->roles as $role){
+    //         if($role->hasAccess($permissions)){
+    //             return true;
+    //         }
+    //    }
+    //    return false;
+    // }
+
+    // public function inRole($roleSlug)
+    // {
+    //     return $this->roles()->where('slug',$roleSlug)->count()==1;
+    // }
 }
