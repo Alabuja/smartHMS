@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Requests\DepartmentRequest;
 
 class Department extends Model
 {
-    protected $fillable = ['department_name', 'description', 'avatar',];
+	protected $table = 'departments'; 
+
+    protected $fillable = ['name', 'description',];
 }

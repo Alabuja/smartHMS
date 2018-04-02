@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\DepartmentRequest;
+use App\Http\Traits\DepartmentTrait;
+use App\Department;
 
 class AdminController extends Controller
 {
+    use DepartmentTrait;
 
     public function index()
     {
@@ -80,18 +84,26 @@ class AdminController extends Controller
 
     public function getDepartment()
     {
-        return view('admin.department');
+
+        $department = $this->findDepartment();
+
+        return view('admin.department', $department);
     }
 
-    public function addDepartment()
+    public function addDepartment(DepartmentRequest $departmentRequest)
     {
-        //return view('admin.newdepartment');
-        // Should a modal
+        
+        Department::create($departmentRequest->validated());
+
+        $departmentRequest->session()->flash('success', 'New Department Successfully Created');
+        return back();
+
+        //return back();
     }
 
-    public function store(UsersRequest $request)
-    {
+    // public function store(UsersRequest $request)
+    // {
     	
-    }
+    // }
 
 }

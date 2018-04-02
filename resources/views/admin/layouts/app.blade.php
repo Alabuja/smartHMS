@@ -55,8 +55,8 @@
                     <li>
                         <h3 class="navigation-title">Navigation</h3>
                     </li>
-                    <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-                    <li><a href=""><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                    <li class="active"><a href="{{ url('admin/home') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="{{ url('admin/department') }}"><i class="fa fa-home"></i> <span>Departments</span></a></li>
 
                     <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>Add New Users</span></a>
                         <ul class="child-list">
@@ -65,12 +65,12 @@
                         </ul>
                     </li>
 
-                    <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>Departments</span></a>
+                    {{-- <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>Departments</span></a>
                         <ul class="child-list">
                             <li><a href="{{ url('admin/department') }}">Departments</a></li>
                             <li><a href="{{ url('admin/newdepartment') }}"> Add New Department</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Monitor Hospital</span></a>
                         <ul class="child-list">
