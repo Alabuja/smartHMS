@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -36,4 +37,42 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function authenticated($request, $user)
+    {
+
+        if($user->role == 'doctor')
+        {
+            return redirect('doctor/home') ;
+        }
+
+        else if($user->role == 'nurse')
+        {
+            return redirect('nurse/home');
+        }
+        else if($user->role == 'pharmacist')
+        {
+            return redirect('pharmacist/home');
+        }
+        else if($user->role == 'accountant')
+        {
+            return redirect('accountant/home');
+        }
+        else if($user->role == 'laboratorist')
+        {
+            return redirect('laboratorist/home');
+        }
+        else if($user->role == 'receptionist')
+        {
+            return redirect('receptionist/home');
+        }
+        else {
+            return redirect('/');
+        }
+    }
+
+    // public function logout($request)
+    // {
+        
+    // }
 }

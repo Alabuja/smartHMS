@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
 
     /**
-	*	Appointments
+	*	Appointments 
 	*/
 	public function getAppointment()
     {
