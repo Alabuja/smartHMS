@@ -150,10 +150,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
     Route::post('newpatients', 'AdminController@addPatient');  // Should be a modal
 
     Route::get('department', 'AdminController@getDepartment');
+    Route::get('department/{id}', 'AdminController@editDepartment');
+    Route::post('department/{id}', 'AdminController@updateDepartment');
     Route::post('newdepartment', 'AdminController@addDepartment'); //Should be a modal 
 
     Route::get('department_facilities/{id}', 'AdminController@getFacility');
     Route::post('department_facilities', 'AdminController@addFacility');
+    
+    Route::get('department_facilities/edit/{id}', 'AdminController@editFacility');
+    Route::post('department_facilities/edit/{id}', 'AdminController@updateFacilities');
 
     Route::get('blood_donor', 'AdminController@getBloodDonor');
     Route::get('blood_bank', 'AdminController@getBloodBank');

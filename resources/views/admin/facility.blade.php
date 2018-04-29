@@ -42,7 +42,7 @@
                                     <td>{{$facility->title or ''}}</td>
                                     <td>{{$facility->description or ''}}</td>
                                     <td>
-                                    	<td><a href="#" class="btn btn-info m-t-10"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a></td>
+                                    	<td><a href="edit/{{$facility->id}}" class="btn btn-info m-t-10"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a></td>
                                     	<td><a href="#" class="btn btn-danger m-t-10"><i class="fa fa-trash-o" aria-hidden="true"> Delete</i></a>
                                     </td>
                                 </tr>

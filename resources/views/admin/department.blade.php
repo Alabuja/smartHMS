@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
      
 @section('content') 
-
 				<!-- profile head start-->
             <!-- page head start-->
             <div class="page-head">
@@ -40,7 +39,7 @@
                                     
                                     <td>
                                     	<a href="department_facilities/{{$department->id}}" class="btn btn-success m-t-10"><i class="fa fa-plus"></i> Manage Facilities</a></td>
-                                    	<td><a href="#" class="btn btn-info m-t-10"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                                    	<td><a href="department/{{$department->id}}" class="btn btn-info m-t-10"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                                     	<td><a href="#" class="btn btn-danger m-t-10"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
@@ -48,15 +47,6 @@
                             @endforeach
 
                             </tbody>
-                            <!-- <tfoot>
-                            <tr>
-                                <th>S/N</th>
-                                <th>Last Name</th>
-                                <th>First Name</th>
-                                <th>Username</th>
-                                <th></th>
-                            </tr>
-                            </tfoot> -->
                         </table>
                         {{ $paginations->links() }}
                 </div>
@@ -66,5 +56,4 @@
 
             @include('footer')
             @include('admin.newdepartment')
-
 @endsection
