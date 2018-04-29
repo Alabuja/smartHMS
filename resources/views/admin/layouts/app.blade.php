@@ -60,8 +60,8 @@
 
                     <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>Add New Users</span></a>
                         <ul class="child-list">
-                            <li><a href="{{ url('admin/newofficials') }}"> Hospital Officials</a></li>
-                            <li><a href="{{ url('admin/newpatients') }}"> Patients</a></li>
+                            <li><a href="{{ url('admin/officials') }}"> Hospital Officials</a></li>
+                            <li><a href="{{ url('admin/patients') }}"> Patients</a></li>
                         </ul>
                     </li>
 

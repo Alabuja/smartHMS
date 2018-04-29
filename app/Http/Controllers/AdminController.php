@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\DepartmentRequest;
+use App\Http\Requests\FacilityRequest;
 use App\Http\Traits\DepartmentTrait;
 use App\Department;
+use App\Facility;
 
 class AdminController extends Controller
 {
@@ -99,6 +101,26 @@ class AdminController extends Controller
         return back();
 
         //return back();
+    }
+
+    public function getFacility($id){
+
+        $facilities = Department::join('department_facilities', 'departments.id', '=', 'department_facilities.department_id')
+                                        ->where('departments.id', '=', $id)
+                                        ->select('departments.name', 'department_facilities.title', 'department_facilities.description', 'department_facilities.department_id')
+                                        ->get();
+        $paginations = Facility::paginate(100);
+    
+        return view('admin.facility', compact('facilities', 'paginations'));
+    }
+
+    public function addFacility(FacilityRequest $facilitiesRequest)
+    {
+        Facility::create($facilitiesRequest->validated());
+
+        $facilitiesRequest->session()->flash('success', 'New Department Facility Successfully Added');
+        return back();
+
     }
 
     // public function store(UsersRequest $request)

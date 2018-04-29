@@ -1,16 +1,20 @@
 @extends('admin.layouts.app')
      
 @section('content') 
-
+@if($facilities)
 				<!-- profile head start-->
             <!-- page head start-->
             <div class="page-head">
                 <h3>
-                    Department
+                @foreach($facilities as $i => $facility)
+                    @if($i == 0)
+                        Department Facilities | {{$facility->name}} Department
+                    @endif
+                @endforeach 
                 </h3>
                 {{-- <span class="sub-title">Welcome to SmartHMS Admin dashboard</span> --}}
                 <div class="state-information">
-                    <a data-toggle="modal" href="#addDepartment" class="btn btn-success m-t-10"><i class="fa fa-plus"></i> Add Department </a>
+                    <a data-toggle="modal" href="#addFacility" class="btn btn-success m-t-10"><i class="fa fa-plus"></i> Add Department Facilities </a>
                 </div>
             </div>
             <!-- page head end-->
@@ -26,22 +30,20 @@
                             <tr>
                                 <th>S/N</th>
                                 <th>Department Name</th> 
-                                <th>Description</th>  
-                                <th>Options</th>                                                 
+                                <th>Description</th>
+                                <th>Options</th>                                               
                             </tr>
                             </thead>
                             <tbody>
                             <?php $i=1 ?>
-                            @foreach($departments as $department)
+                            @foreach($facilities as $facility)
                                 <tr>
                                     <td>{{$i}}</td> 
-                                    <td>{{$department->name}}</td>
-                                    <td>{{$department->description}}</td>
-                                    
+                                    <td>{{$facility->title or ''}}</td>
+                                    <td>{{$facility->description or ''}}</td>
                                     <td>
-                                    	<a href="department_facilities/{{$department->id}}" class="btn btn-success m-t-10"><i class="fa fa-plus"></i> Manage Facilities</a></td>
-                                    	<td><a href="#" class="btn btn-info m-t-10"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-                                    	<td><a href="#" class="btn btn-danger m-t-10"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                    	<td><a href="#" class="btn btn-info m-t-10"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a></td>
+                                    	<td><a href="#" class="btn btn-danger m-t-10"><i class="fa fa-trash-o" aria-hidden="true"> Delete</i></a>
                                     </td>
                                 </tr>
                                 <?php $i++ ?>
@@ -65,6 +67,6 @@
             </div>
 
             @include('footer')
-            @include('admin.newdepartment')
-
+            @include('admin.newfacility')
+@endif
 @endsection

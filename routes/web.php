@@ -137,7 +137,7 @@ Route::group(['prefix' => 'patient', 'middleware' => ['patient']], function () {
     ]);
 
 });
-
+ 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
 
     Route::get('home', 'AdminController@index');
@@ -151,6 +151,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
 
     Route::get('department', 'AdminController@getDepartment');
     Route::post('newdepartment', 'AdminController@addDepartment'); //Should be a modal 
+
+    Route::get('department_facilities/{id}', 'AdminController@getFacility');
+    Route::post('department_facilities', 'AdminController@addFacility');
 
     Route::get('blood_donor', 'AdminController@getBloodDonor');
     Route::get('blood_bank', 'AdminController@getBloodBank');

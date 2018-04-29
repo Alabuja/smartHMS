@@ -10,4 +10,8 @@ class Department extends Model
 	protected $table = 'departments'; 
 
     protected $fillable = ['name', 'description',];
+    
+    public function facility(){
+        return $this->hasMany('App\DepartmentFacility');
+    }
 }
