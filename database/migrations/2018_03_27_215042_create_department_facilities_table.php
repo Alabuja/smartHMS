@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateDepartmentFacilitiesTable extends Migration
-{
+{ 
     /**
      * Run the migrations.
      *

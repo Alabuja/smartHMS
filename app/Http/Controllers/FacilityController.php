@@ -24,40 +24,27 @@ class FacilityController extends Controller
 
     public function addFacility(Request $request3)
     {
-        $rules = array(
+
+        $this->validate($request3, [
             'title' => 'required',
             'description' => 'min:3',
             'department_id' => 'required',
-        );
-        $validator = Validator::make($request3->all(), $rules);
-        if ($validator-> fails()){
-            $messages = $validator->messages();
-            return redirect()->back()->withErrors($messages)->withInput();
-        }
-        else { 
-
-        // $this->validate($request3, [
-        //     'title' => 'required',
-        //     'description' => 'min:3',
-        //     'department_id' => 'required',
-        // ]);
+        ]);
         
-        // $title = $request3->input('title');
-        // $description = $request3->input('description');
-        // $department_id = $request3->input('department_id');
+        $title = $request3->input('title');
+        $description = $request3->input('description');
+        $department_id = $request3->input('department_id');
 
-            $facility = new Facility();
-            $facility->title = $request3->input('title');;
-            $facility->description =$request3->input('description');
-            $facility->department_id = $request3->input('department_id');
+        $facility = new Facility();
+        $facility->title = $title;
+        $facility->description = $description;
+        $facility->department_id = $department_id;
 
-            $facility->save();
-        
+        $facility->save();
 
-            $request3->session()->flash('success', 'New Department Facility Successfully Added');
-            return redirect()->back();
+        $request3->session()->flash('success', 'New Department Facility Successfully Added');
+        return back();
 
-        } 
     } 
 
     public function editFacility($id){ 

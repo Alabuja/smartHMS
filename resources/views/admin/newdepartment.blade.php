@@ -8,7 +8,7 @@
                                     </div>
                                     <div class="modal-body">
                                     	<form class="" action="{{ url('admin/newdepartment') }}" method="POST">
-
+ 
                         					{{ csrf_field() }}
 	                                        <div class="row">
 	                                            <div class="form-group {{ $errors->has('name') ? 'has-error': ''}} required">
