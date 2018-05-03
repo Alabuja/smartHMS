@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () { 
     return view('welcome');
-});
+}); 
 
 Auth::routes();
 
@@ -149,16 +149,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
     Route::get('patients', 'AdminController@getPatient'); 
     Route::post('newpatients', 'AdminController@addPatient');  // Should be a modal
 
-    Route::get('department', 'AdminController@getDepartment');
-    Route::get('department/{id}', 'AdminController@editDepartment');
-    Route::post('department/{id}', 'AdminController@updateDepartment');
-    Route::post('newdepartment', 'AdminController@addDepartment'); //Should be a modal 
+    Route::get('department', 'DepartmentController@getDepartment');
+    Route::get('department/{id}', 'DepartmentController@editDepartment');
+    Route::post('department/{id}', 'DepartmentController@updateDepartment');
+    Route::post('newdepartment', 'DepartmentController@addDepartment'); //Should be a modal 
 
-    Route::get('department_facilities/{id}', 'AdminController@getFacility');
-    Route::post('department_facilities', 'AdminController@addFacility');
+    //Route::delete('department/{id}', 'DepartmentController@deleteDepartment');
+
+    Route::get('department_facilities/{id}', 'FacilityController@getFacility'); 
     
-    Route::get('department_facilities/edit/{id}', 'AdminController@editFacility');
-    Route::post('department_facilities/edit/{id}', 'AdminController@updateFacilities');
+    Route::get('department_facilities/edit/{id}', 'FacilityController@editFacility');
+    Route::post('department_facilities/edit/{id}', 'FacilityController@updateFacilities');
+    Route::post('department_facilities', 'FacilityController@addFacility');
+    //Route::delete('department_facilities/{id}', 'FacilityController@deleteFacility');
 
     Route::get('blood_donor', 'AdminController@getBloodDonor');
     Route::get('blood_bank', 'AdminController@getBloodBank');

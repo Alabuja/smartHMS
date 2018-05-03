@@ -19,7 +19,7 @@
             </div>
             <!-- page head end-->
 
-            <!--body wrapper start-->
+            <!--body wrapper start--> 
             <div class="wrapper">
                 <!--state overview start-->
                 @include('layouts.alerts')

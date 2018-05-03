@@ -18,6 +18,7 @@ class CreateDepartmentFacilitiesTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->integer('department_id')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('department_id')->references('id')->on('departments');
