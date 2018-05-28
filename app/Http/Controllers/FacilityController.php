@@ -8,7 +8,8 @@ use App\Http\Requests\FacilityRequest;
 use Validator;
 use App\Department;
 use App\Facility;
-
+use Illuminate\Pagination\LengthAwarePaginator;
+ 
 class FacilityController extends Controller
 {
     public function getFacility($id){

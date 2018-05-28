@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone_number', 'password', 'address', 'role',
+        'name', 'email', 'phone_number', 'password', 'address', 'role', 
         'department_id', 'profile', 'linkedin_url',
         'facebook_url', 'twitter_url', 'avatar', 'avatar_url', 
     ];
@@ -31,6 +31,61 @@ class User extends Authenticatable
 
     public function isRole(){
       return $this->role; // mysql table column
+    }
+
+    public function department(){
+        return $this->belongsTo('App\Department', 'department_id');
+    }
+
+    public function fetch_all_doctors(){
+        
+        $doctors  = self::select('*')
+                        ->where('role','=','doctor')
+                        ->get();
+
+        return $doctors;
+    }
+    public function fetch_all_pharmacists(){
+        
+        $pharmacists  = self::select('*')
+                        ->where('role', 'pharmacist')
+                        ->get();
+
+        return $pharmacists;
+    }
+
+    public function fetch_all_accountants(){
+        
+        $accountants  = self::select('*')
+                        ->where('role', '=', 'accountant')
+                        ->get();
+
+        return $accountants;
+    }
+    public function fetch_all_nurses(){
+        
+        $nurses  = self::select('*')
+                        ->where('role', '=', 'nurse')
+                        ->get();
+
+        return $nurses;
+    }
+
+    public function fetch_all_receptionists(){
+        
+        $receptionists  = self::select('*')
+                        ->where('role', 'receptionist')
+                        ->get();
+
+        return $receptionists;
+    }
+    public function fetch_all_laboratists(){
+        
+        $laboratists  = self::select('*')
+                        ->where('role', 'laboratist')
+                        ->get();
+
+        return $laboratists;
     }
 
     // public function hasAccess(array $permissions)

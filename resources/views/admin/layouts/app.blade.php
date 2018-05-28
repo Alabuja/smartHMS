@@ -205,7 +205,8 @@
 
 <!--common scripts for all pages-->
 
-<script src="{{URL::asset('js/scripts.js')}}"></script>
+<script src="{{URL::asset('js/scripts.js')}}"></script><!-- 
+<script src="{{URL::asset('js/officials.js')}}"></script> -->
 <script type="text/javascript">
     $(document).ready(function() {
         //countTo
@@ -213,6 +214,8 @@
     });
 
 </script>
+
+    @yield('js')
 
 </body>
 </html>

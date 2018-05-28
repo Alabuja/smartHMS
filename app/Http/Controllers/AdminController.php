@@ -9,6 +9,7 @@ use App\Http\Requests\FacilityRequest;
 use App\Http\Traits\DepartmentTrait;
 use App\Department;
 use App\Facility;
+use App\Role;
 
 class AdminController extends Controller
 {
@@ -30,7 +31,12 @@ class AdminController extends Controller
 	*/
 	public function getOfficial()
     {
-    	return view('admin.newusers');
+     //    $role           = new Role;
+     //    $department     = new Department;
+
+     //    $roles          = $role->roles_details();
+     //    $departments    = $department->fetch_all_departments();
+    	// return view('admin.newusers', compact('roles', 'departments'));
     }
 
     public function addOfficial()

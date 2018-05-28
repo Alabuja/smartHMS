@@ -143,8 +143,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
     Route::get('home', 'AdminController@index');
     Route::get('profile', 'AdminController@profile');
 
-    Route::get('officials', 'AdminController@getOfficial'); 
-    Route::post('newofficials', 'AdminController@addOfficial');  // Should be a modal
+    // Route::get('officials', 'AdminController@getOfficial'); 
+    // Route::post('newofficials', 'AdminController@addOfficial');  // Should be a modal
 
     Route::get('patients', 'AdminController@getPatient'); 
     Route::post('newpatients', 'AdminController@addPatient');  // Should be a modal
@@ -152,7 +152,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
     Route::get('department', 'DepartmentController@getDepartment');
     Route::get('department/{id}', 'DepartmentController@editDepartment');
     Route::post('department/{id}', 'DepartmentController@updateDepartment');
-    Route::post('newdepartment', 'DepartmentController@addDepartment'); //Should be a modal 
+    Route::post('newdepartment', 'DepartmentController@addDepartment'); //Should be a modal
+
+    Route::get('officials', 'UserController@getOfficial');
+    Route::post('newofficials', 'UserController@store');  // Should be a modal
 
     //Route::delete('department/{id}', 'DepartmentController@deleteDepartment');
 
@@ -166,6 +169,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
     Route::get('blood_donor', 'AdminController@getBloodDonor');
     Route::get('blood_bank', 'AdminController@getBloodBank');
     Route::get('medicine', 'AdminController@getMedicine');
+
+    Route::get('official_users', 'UserController@getUsers');
 
     Route::post('logout', 'Admin\Auth\AdminLoginController@getLogout');
 });

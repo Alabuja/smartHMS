@@ -19,4 +19,14 @@ class Department extends Model
     public function facility(){
         return $this->hasMany('App\Facility');
     }
+    public function user(){
+        return $this->hasMany('App\User');
+    }
+
+    public function fetch_all_departments()
+    {
+    	$departments = self::all();
+
+    	return $departments;
+    }
 }
