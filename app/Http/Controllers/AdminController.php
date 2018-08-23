@@ -10,14 +10,28 @@ use App\Http\Traits\DepartmentTrait;
 use App\Department;
 use App\Facility;
 use App\Role;
+use App\User;
+use App\Patient;
 
 class AdminController extends Controller
 {
-    
+    public function __construct(User $user, Patient $patient)
+    {
+        $this->user         =   $user;
+        $this->patient      =   $patient;
+    }
 
     public function index()
     {
-        return view('admin.dashboard');
+        $doctors            =   $this->user->countDoctors();
+        $pharmacists        =   $this->user->countPharmacists();
+        $nurses             =   $this->user->countNurses();
+        $accountants        =   $this->user->countAccountants();
+        $laboratorists      =   $this->user->countLaboratorists();
+        $receptionists      =   $this->user->countReceptionists();
+        $patients           =   $this->patient->countPatients();
+
+        return view('admin.dashboard', compact('doctors', 'pharmacists', 'nurses', 'accountants', 'laboratorists', 'receptionists', 'patients'));
     }
 
     public function profile()

@@ -51,7 +51,7 @@ class DepartmentController extends Controller
         $request->session()->flash('success', 'Updated Departments!!!');
 
         return back();
-
+ 
     }
 
     public function deleteDepartment(){

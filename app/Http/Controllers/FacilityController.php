@@ -9,32 +9,35 @@ use Validator;
 use App\Department;
 use App\Facility;
 use Illuminate\Pagination\LengthAwarePaginator;
- 
+  
 class FacilityController extends Controller
 {
+    public function __construct(Department $department)
+    {
+        $this->department   =   $department;
+    }
+
     public function getFacility($id){
 
-        $facilities = Department::join('department_facilities', 'departments.id', '=', 'department_facilities.department_id')
-                                        ->where('departments.id', '=', $id)
-                                        ->select('departments.*', 'department_facilities.title', 'department_facilities.description', 'department_facilities.department_id', 'department_facilities.*')
-                                        ->get();
+        $facilities     =   $this->department->getDepartment($id);
+
         $paginations = Facility::paginate(100);
     
         return view('admin.facility', compact('facilities', 'paginations'));
     }
 
-    public function addFacility(Request $request3)
+    public function addFacility(Request $request)
     {
 
-        $this->validate($request3, [
+        $this->validate($request, [
             'title' => 'required',
             'description' => 'min:3',
             'department_id' => 'required',
         ]);
         
-        $title = $request3->input('title');
-        $description = $request3->input('description');
-        $department_id = $request3->input('department_id');
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $department_id = $request->input('department_id');
 
         $facility = new Facility();
         $facility->title = $title;
@@ -43,7 +46,7 @@ class FacilityController extends Controller
 
         $facility->save();
 
-        $request3->session()->flash('success', 'New Department Facility Successfully Added');
+        $request->session()->flash('success', 'New Department Facility Successfully Added');
         return back();
 
     } 
@@ -54,17 +57,17 @@ class FacilityController extends Controller
         return view('admin.editfacility', compact('editFacilities'));
     }
 
-    public function updateFacilities(Request $request2, $id){
+    public function updateFacilities(Request $request, $id){
         $updateFacility = Facility::findOrFail($id);
 
-        $this->validate($request2, [
+        $this->validate($request, [
             'title' => 'required',
             'description' => 'min:3',
             'department_id' => 'required|numeric',
         ]);
 
-        $updateFacility->fill($request2->all())->save();
-        $request2->session()->flash('success', 'Facilities Updated Successfully');
+        $updateFacility->fill($request->all())->save();
+        $request->session()->flash('success', 'Facilities Updated Successfully');
         return back();
     }
 

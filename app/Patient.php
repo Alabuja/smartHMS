@@ -30,4 +30,11 @@ class Patient extends Authenticatable
     {
         $this->notify(new PatientResetPassword($token));
     }
+
+    public function countPatients()
+    {
+        $patients   =   self::whereNotNull('name')->count();
+
+        return $patients;
+    }
 }

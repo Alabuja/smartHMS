@@ -14,8 +14,6 @@ class Facility extends Model
 
     protected $fillable = ['title', 'description', 'department_id',];
 
-    protected $dates = ['deleted_at'];
-
     public function department(){
         return $this->belongsTo('App\Department', 'department_id');
     }

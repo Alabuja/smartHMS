@@ -13,8 +13,6 @@ class Department extends Model
 	protected $table = 'departments'; 
 
     protected $fillable = ['name', 'description',];
-
-    protected $dates = ['deleted_at'];
     
     public function facility(){
         return $this->hasMany('App\Facility');
@@ -28,5 +26,14 @@ class Department extends Model
     	$departments = self::all();
 
     	return $departments;
+    }
+
+    public function getDepartment($id)
+    {
+        $facilities = self::join('department_facilities', 'departments.id', '=', 'department_facilities.department_id')
+                            ->where('departments.id', '=', $id)
+                            ->select('departments.*', 'department_facilities.title', 'department_facilities.description', 'department_facilities.department_id', 'department_facilities.*')
+                            ->get();
+        return $facilities;
     }
 }

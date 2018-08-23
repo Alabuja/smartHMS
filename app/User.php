@@ -13,7 +13,7 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array
-     */
+     */ 
     protected $fillable = [
         'name', 'email', 'phone_number', 'password', 'address', 'role', 
         'department_id', 'profile', 'linkedin_url',
@@ -35,6 +35,13 @@ class User extends Authenticatable
 
     public function department(){
         return $this->belongsTo('App\Department', 'department_id');
+    }
+
+    public function fetch_all_users(){
+        
+        $doctors  = self::all();
+
+        return $doctors;
     }
 
     public function fetch_all_doctors(){
@@ -86,6 +93,48 @@ class User extends Authenticatable
                         ->get();
 
         return $laboratists;
+    }
+
+    public function countDoctors()
+    {
+        $doctors    =   self::where('role', 'doctor')->count();
+
+        return $doctors;
+    }
+
+    public function countPharmacists()
+    {
+        $pharmacists    =   self::where('role', 'pharmacist')->count();
+
+        return $pharmacists;
+    }
+
+    public function countNurses()
+    {
+        $nurses    =   self::where('role', 'nurse')->count();
+
+        return $nurses;
+    }
+
+    public function countAccountants()
+    {
+        $accountants    =   self::where('role', 'accountant')->count();
+
+        return $accountants;
+    }
+
+    public function countLaboratorists()
+    {
+        $laboratorists    =   self::where('role', 'laboratorist')->count();
+
+        return $laboratorists;
+    }
+
+    public function countReceptionists()
+    {
+        $receptionists    =   self::where('role', 'receptionist')->count();
+
+        return $receptionists;
     }
 
     // public function hasAccess(array $permissions)

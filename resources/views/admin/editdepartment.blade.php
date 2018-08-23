@@ -19,7 +19,7 @@
             <div class="wrapper">
                 <!--state overview start-->
                 @include('layouts.alerts')
-                <div class="col-md-11">
+                <div class="col-md-11"> 
                 	<div class="row state-overview">
                         <div class="container log-row">
 

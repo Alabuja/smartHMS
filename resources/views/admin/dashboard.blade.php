@@ -21,7 +21,7 @@
                                 <i class="fa fa-send"></i>
                             </div>
                             <div class="value white">
-                                <h1 class="timer" data-from="0" data-to="320"
+                                <h1 class="timer" data-from="0" data-to="{{$doctors}}"
                                     data-speed="1000">
                                     <!--320-->
                                 </h1>
@@ -35,7 +35,7 @@
                                 <i class="fa fa-tags"></i>
                             </div>
                             <div class="value gray">
-                                <h1 class="purple-color timer" data-from="0" data-to="123"
+                                <h1 class="purple-color timer" data-from="0" data-to="{{$patients}}"
                                     data-speed="1000">
                                     <!--123-->
                                 </h1>
@@ -49,7 +49,7 @@
                                 <i class="fa fa-cloud-upload"></i>
                             </div>
                             <div class="value white">
-                                <h1 class="timer" data-from="0" data-to="432"
+                                <h1 class="timer" data-from="0" data-to="{{$nurses}}"
                                     data-speed="1000">
                                     <!--432-->
                                 </h1>
@@ -63,7 +63,7 @@
                                 <i class="fa fa-bullseye"></i>
                             </div>
                             <div class="value gray">
-                                <h1 class="green-color timer" data-from="0" data-to="2345"
+                                <h1 class="green-color timer" data-from="0" data-to="{{$pharmacists}}"
                                     data-speed="3000">
                                     <!--2345-->
                                 </h1>
@@ -82,7 +82,7 @@
                                 <i class="fa fa-send"></i>
                             </div>
                             <div class="value white">
-                                <h1 class="timer" data-from="0" data-to="320"
+                                <h1 class="timer" data-from="0" data-to="{{$laboratorists}}"
                                     data-speed="1000">
                                     <!--320-->
                                 </h1>
@@ -96,7 +96,7 @@
                                 <i class="fa fa-tags"></i>
                             </div>
                             <div class="value gray">
-                                <h1 class="purple-color timer" data-from="0" data-to="123"
+                                <h1 class="purple-color timer" data-from="0" data-to="{{$accountants}}"
                                     data-speed="1000">
                                     <!--123-->
                                 </h1>

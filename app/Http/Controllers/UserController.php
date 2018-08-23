@@ -61,13 +61,15 @@ class UserController extends Controller
     	$pharmacists    = $user->fetch_all_pharmacists();
     	$accountants    = $user->fetch_all_accountants();
     	$nurses  		= $user->fetch_all_nurses();
-    	$receptionists  = $user->fetch_all_receptionists();
+    	$receptionists  = $user->fetch_all_receptionists(); 
     	$laboratists    = $user->fetch_all_laboratists();
+
+        $users          = $user->fetch_all_users();
 
     	$paginations = User::paginate(100);
 
 
-    	return view('admin.officials', compact('doctors', 'pharmacists', 'nurses', 'laboratists', 'paginations', 'roles', 'departments', 'receptionists'));
+    	return view('admin.officials', compact('users', 'doctors', 'pharmacists', 'nurses', 'laboratists', 'paginations', 'roles', 'departments', 'receptionists'));
     }
 
     public function getUsers(Request $request)
