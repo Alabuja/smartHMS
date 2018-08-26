@@ -146,7 +146,6 @@ class UsersSeeder extends Seeder
             'blood_group' => 'O+',
             'genotype' => 'AA',
             'sex' => 'Male',
-            'avatar' => 'default_avatar.jpg',
             'avatar_url' => 'http://res.cloudinary.com/dvvvmbbei/image/upload/c_fit,h_200,w_200/gvatsjk6v0sr2jezzksw.png',
         ]);
     }

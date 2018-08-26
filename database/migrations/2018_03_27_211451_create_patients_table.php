@@ -19,12 +19,11 @@ class CreatePatientsTable extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
             $table->string('password');
-            $table->text('address')->nullable();
+            $table->text('address');
             $table->date('birth_date');
             $table->string('blood_group');
             $table->string('genotype');
-            $table->string('sex');
-            $table->string('avatar');
+            $table->enum('sex', ['Male', 'Female', 'Others']);
             $table->string('avatar_url');
             $table->rememberToken();
             $table->timestamps();

@@ -76,10 +76,10 @@
 
                                             {{-- roles options --}}
                                              <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                                                <label for="name" class="col-md-4 control-label">Role</label>
+                                                <label for="role" class="col-md-4 control-label">Role</label>
 
                                                 <div class="col-md-6">
-                                                    <select id="name" type="text" class="form-control" name="role" value="{{ old('role') }}" required >
+                                                    <select id="role" type="text" class="form-control" name="role" value="{{ old('role') }}" required >
                                                         @foreach($roles as $role)
                                                             <option value="{{strtolower($role->name)}}">{{$role->name}}</option>
                                                         @endforeach
@@ -94,10 +94,10 @@
                                             </div>
 
                                             <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
-                                                <label for="name" class="col-md-4 control-label">Department </label>
+                                                <label for="department_id" class="col-md-4 control-label">Department </label>
 
                                                 <div class="col-md-6">
-                                                    <select id="name" type="text" class="form-control" name="department_id" value="{{ old('role') }}">
+                                                    <select id="department_id" type="text" class="form-control" name="department_id" value="{{ old('role') }}">
                                                         @foreach($departments as $department)
                                                             <option value="{{$department->id}}">{{$department->name}}</option>
                                                         @endforeach

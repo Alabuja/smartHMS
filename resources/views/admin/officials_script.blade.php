@@ -13,18 +13,19 @@
 	            if(target == '#nurse'){
 
 
-	                if (!$("#nurse").val() == 1){
+	                if (!$("#nurse_details").val() == 1){
 	                    return
 	                }
 	                else{
-	                    $("#loading_paid").show();//
+	                    $("#nurse_loader").show();//
 	                    // console.log(selectedUrl());
 	                    console.log($('#type_nurse').val() );
 	                    console.log(target);
-	                    $.get('/admin/officials', {type:$('#type_nurse').val() })
+	                    $.get('/admin/officials/list', {type:$('#type_nurse').val() })
 	                    .done(function(result){
-	                        $("#loading_nurse").hide();//
-	                        $("#nurse_container").html(result['booking_response_html']);
+	                    	console.log(result);
+	                        $("#nurse_loader").hide();//
+	                        $("#nurse_container").html(result['response_html']);
 	                        $("#nurse_container").show();
 	                    })
 	                    .fail(function(){

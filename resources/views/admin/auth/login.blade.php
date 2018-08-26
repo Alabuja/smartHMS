@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="javascript:;" type="image/png">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Smart H.M.S') }}</title>
 
     <!-- Base Styles -->
     <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">
@@ -28,7 +28,9 @@
   <body class="login-body">
 
       <div class="login-logo">
-          <img src="{{URL::asset('img/login_logo.png')}}" alt=""/>
+          {{-- <img src="{{URL::asset('img/login_logo.png')}}" alt=""/> --}}
+
+          Smart H.M.S
       </div>
 
       <h2 class="form-heading">login</h2>

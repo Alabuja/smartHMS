@@ -7,6 +7,8 @@ use App\Http\Requests\UsersRequest;
 use App\Http\Requests\DepartmentRequest;
 use App\Http\Requests\FacilityRequest;
 use App\Http\Traits\DepartmentTrait;
+use App\Http\Traits\patientTrait;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Department;
 use App\Facility;
 use App\Role;
@@ -15,6 +17,8 @@ use App\Patient;
 
 class AdminController extends Controller
 {
+    use patientTrait;
+
     public function __construct(User $user, Patient $patient)
     {
         $this->user         =   $user;
@@ -73,12 +77,17 @@ class AdminController extends Controller
 	*/
 	public function getPatient()
     {
-    	return view('admin.newpatients');
+        $patients       =   $this->patient->getPatients();
+        $paginations    =   Patient::paginate(100);
+
+    	return view('admin.patients', compact('patients', 'paginations'));
     }
 
-    public function addPatient()
+    public function addPatient(Request $request)
     {
-    	# code...
+    	$patients   =   $this->store();
+        
+        return $patients;
     }
 
     /**

@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="javascript:;" type="image/png">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Smart H.M.S') }}</title>
 
     <!-- Styles -->
 
@@ -37,10 +37,10 @@
         <div class="sidebar-left">
             <!--responsive view logo start-->
             <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
-                <a href="{{url('index')}}">
-                    <img src="{{URL::asset('img/logo-icon.png')}}" alt="">
+                <a href="{{url('admin/home')}}">
+                   {{-- <img src="{{URL::asset('img/logo-icon.png')}}" alt=""> --}}
                     <!--<i class="fa fa-maxcdn"></i>-->
-                    <span class="brand-name">SlickLab</span>
+                    <span class="brand-name">Smart H.M.S</span>
                 </a>
             </div>
             <!--responsive view logo end-->
@@ -55,32 +55,28 @@
                     <li>
                         <h3 class="navigation-title">Navigation</h3>
                     </li>
-                    <li class="active"><a href="{{ url('admin/home') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-                    <li><a href="{{ url('admin/department') }}"><i class="fa fa-home"></i> <span>Departments</span></a></li>
+                    <li class="{{ Request::is('admin/home') ? 'active' : '' }}"><a href="{{ url('admin/home') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                    <li class="{{ Request::is('admin/department') ? 'active' : '' }}"><a href="{{ url('admin/department') }}"><i class="fa fa-home"></i> <span>Departments</span></a></li>
 
                     <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>Add New Users</span></a>
                         <ul class="child-list">
-                            <li><a href="{{ url('admin/officials') }}"> Hospital Officials</a></li>
-                            <li><a href="{{ url('admin/patients') }}"> Patients</a></li>
+                            <li class="{{ Request::is('admin/officials') ? 'active' : '' }}"><a href="{{ url('admin/officials') }}"> Hospital Officials</a></li>
+                            <li class="{{ Request::is('admin/patients') ? 'active' : '' }}"><a href="{{ url('admin/patients') }}"> Patients</a></li>
                         </ul>
                     </li>
 
                     {{-- <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>Departments</span></a>
                         <ul class="child-list">
-                            <li><a href="{{ url('admin/department') }}">Departments</a></li>
-                            <li><a href="{{ url('admin/newdepartment') }}"> Add New Department</a></li>
+                            <li class="{{ Request::is('admin/department') ? 'active' : '' }}"><a href="{{ url('admin/department') }}">Departments</a></li>
+                            <li class="{{ Request::is('admin/newdepartment') ? 'active' : '' }}"><a href="{{ url('admin/newdepartment') }}"> Add New Department</a></li>
                         </ul>
                     </li> --}}
 
                     <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Monitor Hospital</span></a>
                         <ul class="child-list">
-                            <li><a href="{{ url('admin/blood_donor') }}">Blood Donor</a></li>
-                            <li><a href="{{ url('admin/blood_bank') }}"> Blood Bank</a></li>
-                            <li><a href="{{ url('admin/medicine') }}"> Medicine </a></li>
-                            <li><a href="registration.html"> Registration </a></li>
-                            <li><a href="lock.html"> Lock Screen </a></li>
-                            <li><a href="404.html"> 404 Error</a></li>
-                            <li><a href="500.html"> 500 Error</a></li>
+                            <li class="{{ Request::is('admin/blood_donor') ? 'active' : '' }}"><a href="{{ url('admin/blood_donor') }}">Blood Donor</a></li>
+                            <li class="{{ Request::is('admin/blood_bank') ? 'active' : '' }}"><a href="{{ url('admin/blood_bank') }}"> Blood Bank</a></li>
+                            <li class="{{ Request::is('admin/medicine') ? 'active' : '' }}"><a href="{{ url('admin/medicine') }}"> Medicine </a></li>
 
                         </ul>
                     </li>
@@ -100,17 +96,15 @@
 
                 <!--logo and logo icon start-->
                 <div class="logo dark-logo-bg hidden-xs hidden-sm">
-                    <a href="index.html">
-                        <img src="{{URL::asset('img/logo-icon.png')}}" alt="">
+                    <a href="{{url('admin/home')}}">
                         <!--<i class="fa fa-maxcdn"></i>-->
-                        <span class="brand-name">SlickLab</span>
+                        <span class="brand-name">Smart H.M.S</span>
                     </a>
                 </div>
 
                 <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
-                    <a href="index.html">
-                        <img src="{{URL::asset('img/logo-icon.png')}}" alt="">
-                        <!--<i class="fa fa-maxcdn"></i>-->
+                    <a href="{{url('admin/home')}}">
+                        S
                     </a>
                 </div>
                 <!--logo and logo icon end-->
@@ -133,7 +127,7 @@
 
                         <li>
                             <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ Auth::guard('admin')->user()->avatar_url }}" alt="{{ Auth::guard('admin')->user()->username }}">{{ Auth::guard('admin')->user()->username }}
+                                <img src="{{ Auth::guard('admin')->user()->avatar_url }}" alt="{{ Auth::guard('admin')->user()->username }}">{{ ucwords(Auth::guard('admin')->user()->username) }}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu purple pull-right">
@@ -144,17 +138,12 @@
                                         <i class="fa fa-sign-out pull-right"></i> Log Out
                                     </a>
                                     <form id="logout-form" action="{{ url('admin/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
+                                        @csrf
                                     </form>
                                     
                                 </li>
                             </ul>
                         </li>
-                        {{-- <li>
-                            <div class="sb-toggle-right">
-                                <i class="fa fa-indent"></i>
-                            </div>
-                        </li> --}}
 
                     </ul>
                 </div>
@@ -205,8 +194,8 @@
 
 <!--common scripts for all pages-->
 
-<script src="{{URL::asset('js/scripts.js')}}"></script><!-- 
-<script src="{{URL::asset('js/officials.js')}}"></script> -->
+<script src="{{URL::asset('js/scripts.js')}}"></script>
+<script src="{{URL::asset('js/custom.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         //countTo

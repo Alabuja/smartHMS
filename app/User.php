@@ -47,7 +47,7 @@ class User extends Authenticatable
     public function fetch_all_doctors(){
         
         $doctors  = self::select('*')
-                        ->where('role','=','doctor')
+                        ->where('role', 'doctor')
                         ->get();
 
         return $doctors;
@@ -64,7 +64,7 @@ class User extends Authenticatable
     public function fetch_all_accountants(){
         
         $accountants  = self::select('*')
-                        ->where('role', '=', 'accountant')
+                        ->where('role', 'accountant')
                         ->get();
 
         return $accountants;
@@ -72,7 +72,7 @@ class User extends Authenticatable
     public function fetch_all_nurses(){
         
         $nurses  = self::select('*')
-                        ->where('role', '=', 'nurse')
+                        ->where('role', 'nurse')
                         ->get();
 
         return $nurses;
@@ -136,19 +136,4 @@ class User extends Authenticatable
 
         return $receptionists;
     }
-
-    // public function hasAccess(array $permissions)
-    // {
-    //    foreach($this->roles as $role){
-    //         if($role->hasAccess($permissions)){
-    //             return true;
-    //         }
-    //    }
-    //    return false;
-    // }
-
-    // public function inRole($roleSlug)
-    // {
-    //     return $this->roles()->where('slug',$roleSlug)->count()==1;
-    // }
 }

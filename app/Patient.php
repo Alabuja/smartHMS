@@ -13,7 +13,7 @@ class Patient extends Authenticatable
     protected $table = 'patients';
 
     protected $fillable = [
-    	'name', 'email', 'phone_number', 'password', 'address', 'birth_date', 'blood_group', 'genotype' ,'sex', 'avatar', 'avatar_url'
+    	'name', 'email', 'phone_number', 'password', 'address', 'birth_date', 'blood_group', 'genotype' ,'sex', 'avatar_url'
     ];
 
     /**
@@ -34,6 +34,13 @@ class Patient extends Authenticatable
     public function countPatients()
     {
         $patients   =   self::whereNotNull('name')->count();
+
+        return $patients;
+    }
+
+    public function getPatients()
+    {
+        $patients   =   self::whereNotNull('name')->get();
 
         return $patients;
     }

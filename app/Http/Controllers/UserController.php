@@ -49,27 +49,60 @@ class UserController extends Controller
     	return back();
     }
 
-    public function getOfficial()
+    public function getOfficial(Request $request)
     {
     	$user 			=	new User;
     	$role           = new Role;
         $department     = new Department;
+        //$params = [];
+        //$params = [];
 
-        $roles          = $role->roles_details();
-        $departments    = $department->fetch_all_departments();
-    	$doctors 		= $user->fetch_all_doctors();
-    	$pharmacists    = $user->fetch_all_pharmacists();
-    	$accountants    = $user->fetch_all_accountants();
-    	$nurses  		= $user->fetch_all_nurses();
-    	$receptionists  = $user->fetch_all_receptionists(); 
-    	$laboratists    = $user->fetch_all_laboratists();
+        if($request->type == 'nurse'){
+            $params['users']           =   $user->fetch_all_nurses();
+            //dd($params);
 
-        $users          = $user->fetch_all_users();
+        }else if($request->role == 'accountant'){
+            $params['users']       =   $user->fetch_all_accountants()->paginate(100);
 
-    	$paginations = User::paginate(100);
+        }else if($request->role == 'pharmacist'){
+            $params['users']       =   $user->fetch_all_pharmacists()->paginate(100);
 
+        }else if($request->role == 'receptionist'){
+            $params['users']     =   $user->fetch_all_receptionists()->paginate(100);
 
-    	return view('admin.officials', compact('users', 'doctors', 'pharmacists', 'nurses', 'laboratists', 'paginations', 'roles', 'departments', 'receptionists'));
+        }else if($request->role == 'laboratist'){
+            $params['users']       =   $user->fetch_all_laboratists()->paginate(100);
+
+        } 
+
+        //dd($params);
+        // $params = [
+        //     'doctors'   =>  $doctors,
+        //     'nurses'    =>  $nurses,
+        //     'accountants'    =>  $accountants,
+        //     'pharmacists'    =>  $pharmacists,
+        //     'receptionists'    =>  $receptionists,
+        //     'laboratists'    =>  $laboratists
+        // ];
+        $usersds = view('admin.officialusers.doctor', $params);
+
+        return response()->json(
+            [
+                'response_html'    => $usersds
+            ]
+        );
+    }
+    public function getListOfficial()
+    {
+        $user           =   new User;
+        $role           = new Role;
+        $department     = new Department;
+
+            $params['users']           =   $user->fetch_all_doctors();
+            $params['roles']           =   $role->roles_details();
+            $params['departments']           =   $department->fetch_all_departments();;
+
+    	return view('admin.officials', $params);
     }
 
     public function getUsers(Request $request)

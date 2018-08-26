@@ -154,7 +154,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function(){
     Route::post('department/{id}', 'DepartmentController@updateDepartment');
     Route::post('newdepartment', 'DepartmentController@addDepartment'); //Should be a modal
 
-    Route::get('officials', 'UserController@getOfficial');
+    Route::get('officials/list', 'UserController@getOfficial');
+    Route::get('officials', 'UserController@getListOfficial');
     Route::post('newofficials', 'UserController@store');  // Should be a modal
 
     //Route::delete('department/{id}', 'DepartmentController@deleteDepartment');

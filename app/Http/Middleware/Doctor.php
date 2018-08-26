@@ -22,3 +22,4 @@ class Doctor
         return redirect('login');
     }
 }
+ 

@@ -38,9 +38,9 @@
             <!--responsive view logo start-->
             <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
                 <a href="{{url('index')}}">
-                    <img src="{{URL::asset('img/logo-icon.png')}}" alt="">
+                    <!-- <img src="{{URL::asset('img/logo-icon.png')}}" alt=""> -->
                     <!--<i class="fa fa-maxcdn"></i>-->
-                    <span class="brand-name">SlickLab</span>
+                    <span class="brand-name">Smart H.M.S</span>
                 </a>
             </div>
             <!--responsive view logo end-->

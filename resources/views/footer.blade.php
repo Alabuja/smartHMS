@@ -1,6 +1,6 @@
 <!--footer section start-->
             <footer>
-                @ <?php echo date('Y'); ?>
+                Copyright &copy; {{date('Y')}} <a target="_blank" href="{{url('/')}}" title="">Smart H.M.S</a>. All Rights Reserved.
             </footer>
             <!--footer section end-->
 

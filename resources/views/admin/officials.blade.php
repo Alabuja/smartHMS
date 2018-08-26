@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> --}}
 
 @section('content') 
 				<!-- profile head start-->
@@ -35,13 +35,77 @@
                 	<div class="col-md-11">
 		                <!-- <div class="row state-overview"> -->
 		                	<div id="doctor" class="tab-pane fade in active ">
-			                    @include('admin.officialusers.doctor')
+		                		<table id="example2" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>S/N</th>
+											<th>Name</th> 
+											<th>Email</th> 
+											<th>Phone Number</th> 
+											<th>Address</th>
+											<th>Role</th>  
+											<th>Department</th> 
+											<th>LinkedIn URL</th> 
+											<th>Facebook URL</th>  
+											<th>Twitter URL</th>                                                 
+										</tr>
+									</thead>
+									<tbody>
+
+										@foreach($users as $i => $doctor)
+											<tr>
+												<td>{{++$i}}</td> 
+												<td>{{$doctor->name}}</td>
+												<td>{{$doctor->email}}</td>
+												<td>{{$doctor->phone_number}}</td>
+												<td>{{$doctor->address or '-'}}</td>
+												<td>{{$doctor->role}}</td>
+												<td>{{$doctor->department->name or '-'}}</td>
+												<td>{{$doctor->linkedin_url or '-'}}</td>
+												<td>{{$doctor->facebook_url or '-'}}</td>
+												<td>{{$doctor->twitter_url or '-'}}</td>
+											</tr>
+										@endforeach
+
+									</tbody>
+								</table>
+
 			                </div>
 
 			                <div id="nurse" class="tab-pane fade">
-				                 @include('admin.officialusers.nurse')
+			                	<span id="nurse_loader" style="display:none"><img src="{{ url('img/ajax-loader.gif') }}" alt=""></span>
+
+			                	<input type="hidden" name="type_nurse" id="type_nurse" value="nurse">
+			                    <div id="nurse_container">
+			                      <input type="hidden" name="nurse_details" id="nurse_details" value="1">
+
+			                    </div>
+				               {{--  @include('admin.officialusers.nurse') --}}
 				            </div>
-		                {{ $paginations->links() }}
+
+				            <div id="pharmacist" class="tab-pane fade">
+				            	<span id="pharmacist_loader" style="display:none"><img src="{{ url('img/ajax-loader.gif') }}" alt=""></span>
+
+				            </div>
+
+				            <div id="laboratist" class="tab-pane fade">
+				            	<span id="laboratists_loader" style="display:none"><img src="{{ url('img/ajax-loader.gif') }}" alt=""></span>
+				            	
+				            </div>
+
+				            <div id="receptionist" class="tab-pane fade">
+				            	<span id="receptionists_loader" style="display:none"><img src="{{ url('img/ajax-loader.gif') }}" alt=""></span>
+				            	
+				            </div>
+
+				            <div id="accountant" class="tab-pane fade">
+				            	<span id="accountant_loader" style="display:none"><img src="{{ url('img/ajax-loader.gif') }}" alt=""></span>
+				            	
+				            </div>
+
+
+
+		                {{-- $paginations->links() --}}
 		            	<!-- </div> -->
 		            </div>
 	                <!--state overview end-->
@@ -51,16 +115,20 @@
             </div>
 
             @include('footer')
-            @include('admin.newusers')
+           @include('admin.newusers')
 
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
+@section('js')
             <script type="text/javascript">
-			    $(document).ready(function(){
-			        $(".nav-tabs a").click(function(){
-			            $(this).tab('show');
-			        });
+
+            	jQuery(function(e){
+				    $(document).ready(function(){
+				        $(".nav-tabs a").click(function(){
+				            $(this).tab('show');
+				        });
+				    });
 			    });
             </script>
+@stop
 @endsection
